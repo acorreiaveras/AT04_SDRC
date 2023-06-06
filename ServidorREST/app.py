@@ -29,7 +29,8 @@ def get_breeds():
             xml_response = generate_xml_response_breeds(response)
             return Response(xml_response, mimetype='text/xml')
         if response_format == 'application/x-protobuf':
-            return generate_probuf_response_breeds(response)
+            protobuf_response = generate_protobuf_response_breeds (response)
+            return Response(protobuf_response, mimetype='application/x-protobuf')
         else:
             json_response = generate_json_response_breeds(response)
             return jsonify(json_response)
@@ -140,8 +141,10 @@ def generate_xml_response(data):
 
     return xml_data    
 
-def generate_probuf_response_breeds(data):
-    breeds = data.json()
+def generate_protobuf_response_breeds (data):
+    breeds = generate_json_response(data)
+    breed_messages = []
+
     for breed in breeds:
         breed_message = breed_pb2.Breed()
 
@@ -154,12 +157,16 @@ def generate_probuf_response_breeds(data):
         image_message.height = breed['image']['height']
         image_message.url = breed['image']['url']
 
-    protobuf_data = breed_message.SerializeToString()
+        breed_messages.append(breed_message)
+
+    breeds_response = breed_pb2.BreedsResponse()
+    breeds_response.breeds.extend(breed_messages) 
+
+    protobuf_data = breeds_response.SerializeToString()
 
     return protobuf_data
 
 def generate_json_response(data):
-    print(data.json())
     return data.json()
 
 if __name__ == '__main__':

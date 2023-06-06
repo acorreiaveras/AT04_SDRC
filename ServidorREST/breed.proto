@@ -12,3 +12,7 @@ message Image{
     int32 height = 3;
     string url = 4;
 }
+
+message BreedsResponse {
+    repeated Breed breeds = 1;
+}

@@ -1,0 +1,176 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: favoritedog-rest
+  description: Dog API
+paths:
+  /api/breeds:
+    get:
+      tags:
+        - Breeds
+      description: Get all dog breeds
+      responses:
+        '200':
+          description: Returns all dog breeds
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetBreeds'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GetBreeds'
+            application/x-protobuf:
+              schema:
+                $ref: '#/components/schemas/GetBreeds'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  /api/favorites:
+    get:
+      tags:
+        - Favorites
+      description: Get all favorites
+      responses:
+        '200':
+          description: Returns all favorites
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetFavorites'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GetFavorites'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+    post:
+      tags:
+        - Favorites
+      requestBody:
+        required: True
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                image_id:
+                  type: string
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  /api/favorites/{favoriteid}:
+    delete:
+      tags:
+        - Favorites
+      operationId: div
+      parameters:
+        - name: favoriteid
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+components:
+  schemas:
+    GetBreeds:
+      type: array
+      items:
+        type: object
+        properties:
+          name:
+            type: string
+          reference_image_id:
+            type: string
+          image: 
+            type: object
+            properties:
+              id:
+                type: string
+              width:
+                type: integer
+              height:
+                type: integer
+              url: 
+                type: string
+    GetFavorites:
+      type: object
+      properties:
+        created_at:
+          type: string
+        id:
+          type: string
+        image:
+          type: object
+          properties:
+            id:
+              type: string
+            url:
+              type: string
+        image_id:
+          type: string
+        sub_ud:
+          type: string
+        user_id:
+          type: string

@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0b\x62reed.proto\"H\n\x05\x42reed\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x1a\n\x12reference_image_id\x18\x02 \x01(\t\x12\x15\n\x05image\x18\x03 \x01(\x0b\x32\x06.Image\"?\n\x05Image\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05width\x18\x02 \x01(\x05\x12\x0e\n\x06height\x18\x03 \x01(\x05\x12\x0b\n\x03url\x18\x04 \x01(\tb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0b\x62reed.proto\"H\n\x05\x42reed\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x1a\n\x12reference_image_id\x18\x02 \x01(\t\x12\x15\n\x05image\x18\x03 \x01(\x0b\x32\x06.Image\"?\n\x05Image\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05width\x18\x02 \x01(\x05\x12\x0e\n\x06height\x18\x03 \x01(\x05\x12\x0b\n\x03url\x18\x04 \x01(\t\"(\n\x0e\x42reedsResponse\x12\x16\n\x06\x62reeds\x18\x01 \x03(\x0b\x32\x06.Breedb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -25,4 +25,6 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _globals['_BREED']._serialized_end=87
   _globals['_IMAGE']._serialized_start=89
   _globals['_IMAGE']._serialized_end=152
+  _globals['_BREEDSRESPONSE']._serialized_start=154
+  _globals['_BREEDSRESPONSE']._serialized_end=194
 # @@protoc_insertion_point(module_scope)
